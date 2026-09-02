@@ -1,0 +1,338 @@
+### =====================================================
+### WORKFORCE CONTINUITY SYSTEM - TEST HTTP
+### =====================================================
+
+
+### =====================================================
+### 1. EMPLOYEE LOGIN
+### =====================================================
+
+POST http://localhost:8080/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "employee1",
+  "password": "123456"
+}
+
+> {%
+    client.global.set("employeeToken", response.body.token);
+%}
+
+
+### =====================================================
+### 2. MANAGER LOGIN
+### =====================================================
+
+POST http://localhost:8080/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "manager1",
+  "password": "123456"
+}
+
+> {%
+    client.global.set("managerToken", response.body.token);
+%}
+
+
+### =====================================================
+### 3. EMPLOYEE MANAGEMENT
+### =====================================================
+
+### Get All Employees
+GET http://localhost:8080/api/employees
+Authorization: Bearer {{managerToken}}
+
+
+### Get Employee 2
+GET http://localhost:8080/api/employees/2
+Authorization: Bearer {{managerToken}}
+
+
+### Employee Dashboard
+GET http://localhost:8080/api/employees/2/dashboard
+Authorization: Bearer {{managerToken}}
+
+
+### Create Employee
+POST http://localhost:8080/api/employees
+Authorization: Bearer {{managerToken}}
+Content-Type: application/json
+
+{
+  "name": "Test Employee",
+  "email": "testemployee@example.com",
+  "role": "Employee",
+  "departmentId": 1,
+  "critical": false
+}
+
+
+### Update Employee 2
+PUT http://localhost:8080/api/employees/2
+Authorization: Bearer {{managerToken}}
+Content-Type: application/json
+
+{
+  "name": "Asiva SR",
+  "email": "asiva@example.com",
+  "role": "Employee",
+  "departmentId": 1,
+  "critical": true
+}
+
+
+### =====================================================
+### 4. LEAVE BALANCE
+### =====================================================
+
+### Get Employee 2 Leave Balance
+GET http://localhost:8080/api/leave-balances/2
+Authorization: Bearer {{managerToken}}
+
+
+### Create Employee 2 Leave Balance
+POST http://localhost:8080/api/leave-balances/2
+Authorization: Bearer {{managerToken}}
+
+
+### =====================================================
+### 5. LEAVES
+### =====================================================
+
+### Get All Leaves
+GET http://localhost:8080/api/leaves
+Authorization: Bearer {{managerToken}}
+
+
+### Get Leave By ID
+GET http://localhost:8080/api/leaves/10
+Authorization: Bearer {{managerToken}}
+
+
+### Create Leave
+POST http://localhost:8080/api/leaves
+Authorization: Bearer {{employeeToken}}
+Content-Type: application/json
+
+{
+  "employeeId": 2,
+  "leaveType": "Casual",
+  "startDate": "2026-09-25",
+  "endDate": "2026-09-26",
+  "reason": "Personal work"
+}
+
+
+### Update Leave
+PUT http://localhost:8080/api/leaves/10
+Authorization: Bearer {{employeeToken}}
+Content-Type: application/json
+
+{
+  "employeeId": 2,
+  "leaveType": "Casual",
+  "startDate": "2026-10-01",
+  "endDate": "2026-10-02",
+  "reason": "Personal work",
+  "status": "PENDING"
+}
+
+
+### Delete Leave
+DELETE http://localhost:8080/api/leaves/10
+Authorization: Bearer {{employeeToken}}
+
+
+### =====================================================
+### 6. MANAGER LEAVE APPROVAL
+### =====================================================
+
+### Approve Leave 10
+PUT http://localhost:8080/api/leaves/10/approve
+Authorization: Bearer {{managerToken}}
+
+
+### Reject Leave 10
+PUT http://localhost:8080/api/leaves/10/reject
+Authorization: Bearer {{managerToken}}
+
+
+### =====================================================
+### 7. WORKFORCE STATUS
+### =====================================================
+
+### Get Employee 2 Status
+GET http://localhost:8080/api/workforce/status/2
+Authorization: Bearer {{managerToken}}
+
+
+### Get All Workforce Status
+GET http://localhost:8080/api/workforce/status
+Authorization: Bearer {{managerToken}}
+
+
+### Get Available Employees
+GET http://localhost:8080/api/workforce/available
+Authorization: Bearer {{managerToken}}
+
+
+### Get Unavailable Employees
+GET http://localhost:8080/api/workforce/unavailable
+Authorization: Bearer {{managerToken}}
+
+
+### Get Department Workforce Status
+GET http://localhost:8080/api/workforce/department/1
+Authorization: Bearer {{managerToken}}
+
+
+### Update Employee Workforce Status
+PUT http://localhost:8080/api/workforce/status/2
+Authorization: Bearer {{managerToken}}
+Content-Type: application/json
+
+{
+  "status": "WORKING",
+  "availability": "AVAILABLE"
+}
+
+
+### =====================================================
+### 8. WORKFORCE SUMMARY
+### =====================================================
+
+### General Workforce Summary
+GET http://localhost:8080/api/workforce/summary
+Authorization: Bearer {{managerToken}}
+
+
+### Employee 2 Workforce Summary
+GET http://localhost:8080/api/workforce/summary/2
+Authorization: Bearer {{managerToken}}
+
+
+### =====================================================
+### 9. DEPARTMENTS
+### =====================================================
+
+### Get All Departments
+GET http://localhost:8080/api/departments
+Authorization: Bearer {{managerToken}}
+
+
+### Get Department 1
+GET http://localhost:8080/api/departments/1
+Authorization: Bearer {{managerToken}}
+
+
+### =====================================================
+### 10. TEAMS
+### =====================================================
+
+### Get Employees By Department
+GET http://localhost:8080/api/teams/department/1
+Authorization: Bearer {{managerToken}}
+
+
+### =====================================================
+### 11. LEAVE CONFLICT
+### =====================================================
+
+### Check Existing Leave Conflict
+GET http://localhost:8080/api/leave-conflicts/check?employeeId=2&startDate=2026-09-20&endDate=2026-09-21
+Authorization: Bearer {{employeeToken}}
+
+
+### Check New Dates
+GET http://localhost:8080/api/leave-conflicts/check?employeeId=2&startDate=2026-11-10&endDate=2026-11-11
+Authorization: Bearer {{employeeToken}}
+
+
+### Get Conflicting Leaves
+GET http://localhost:8080/api/leave-conflicts?employeeId=2&startDate=2026-09-20&endDate=2026-09-21
+Authorization: Bearer {{employeeToken}}
+
+
+### =====================================================
+### 12. MANAGER DASHBOARD
+### =====================================================
+
+GET http://localhost:8080/api/manager/dashboard
+Authorization: Bearer {{managerToken}}
+
+### =====================================================
+### 13. MARK EMPLOYEE CRITICAL
+### =====================================================
+
+### Mark Employee 2 as Critical
+
+PUT http://localhost:8080/api/employees/2/critical
+Authorization: Bearer {{managerToken}}
+Content-Type: application/json
+
+{
+  "critical": true
+}
+
+
+### =====================================================
+### 14. WORKFORCE CONTINUITY SUMMARY
+### =====================================================
+
+### General Workforce Summary
+
+GET http://localhost:8080/api/workforce/summary
+Authorization: Bearer {{managerToken}}
+### Create/Update Employee 3 Workforce Status
+
+PUT http://localhost:8080/api/workforce/status/3
+Authorization: Bearer {{managerToken}}
+Content-Type: application/json
+
+{
+  "status": "WORKING",
+  "availability": "AVAILABLE"
+}
+
+
+### Assign Employee 3 to Department 1
+
+PUT http://localhost:8080/api/employees/3
+Authorization: Bearer {{managerToken}}
+Content-Type: application/json
+
+{
+  "name": "Asiva",
+  "email": "asiva@example.com",
+  "role": "Employee",
+  "departmentId": 1,
+  "critical": false
+}
+
+### TEST - Critical Employee Unavailable
+
+PUT http://localhost:8080/api/workforce/status/2
+Authorization: Bearer {{managerToken}}
+Content-Type: application/json
+
+{
+  "status": "ACTIVE",
+  "availability": "UNAVAILABLE"
+}
+
+### Approve Leave 11
+PUT http://localhost:8080/api/leaves/11/approve
+Authorization: Bearer {{managerToken}}
+
+### Make Critical Employee Unavailable
+PUT http://localhost:8080/api/workforce/status/2
+Authorization: Bearer {{managerToken}}
+Content-Type: application/json
+
+{
+  "status": "ABSENT",
+  "availability": "UNAVAILABLE"
+}

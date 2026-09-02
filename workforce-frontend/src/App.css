@@ -1,0 +1,27 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f5f7fb;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+button {
+  cursor: pointer;
+}
+
+.card {
+  border-radius: 12px;
+}
+
+.table {
+  vertical-align: middle;
+}
+
+h1,
+h2,
+h3 {
+  font-weight: 600;
+}

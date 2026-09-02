@@ -1,0 +1,449 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f5f7fb;
+  color: #172033;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.app {
+  min-height: 100vh;
+}
+
+.topbar {
+  background: white;
+  border-bottom: 1px solid #e5e7eb;
+  padding: 22px 6%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.topbar h1 {
+  font-size: 24px;
+  margin-bottom: 5px;
+}
+
+.topbar p {
+  color: #697386;
+  font-size: 14px;
+}
+
+.online {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #16803c;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.online span,
+.availability > span {
+  width: 9px;
+  height: 9px;
+  background: #22c55e;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.container {
+  width: 88%;
+  max-width: 1250px;
+  margin: 35px auto;
+}
+
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.hero h2 {
+  font-size: 30px;
+  margin-bottom: 8px;
+}
+
+.hero p {
+  color: #6b7280;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+}
+
+.primary,
+.secondary,
+.refresh,
+.approve,
+.reject {
+  border: none;
+  border-radius: 8px;
+  padding: 11px 17px;
+  font-weight: 600;
+}
+
+.primary {
+  background: #2563eb;
+  color: white;
+}
+
+.primary:hover {
+  background: #1d4ed8;
+}
+
+.secondary {
+  background: white;
+  color: #2563eb;
+  border: 1px solid #2563eb;
+}
+
+.refresh {
+  background: #f3f4f6;
+  color: #374151;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  margin-bottom: 25px;
+}
+
+.stat-card {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 22px;
+}
+
+.stat-icon {
+  font-size: 22px;
+  margin-bottom: 15px;
+}
+
+.stat-card p {
+  color: #6b7280;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.stat-card h3 {
+  font-size: 30px;
+}
+
+.stat-card.pending {
+  border-left: 4px solid #f59e0b;
+}
+
+.stat-card.approved {
+  border-left: 4px solid #22c55e;
+}
+
+.stat-card.rejected {
+  border-left: 4px solid #ef4444;
+}
+
+.card {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  margin-bottom: 25px;
+  overflow: hidden;
+}
+
+.section-header {
+  padding: 22px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.section-header h2 {
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+
+.section-header p {
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.table-container {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 16px 22px;
+  text-align: left;
+  border-top: 1px solid #edf0f4;
+}
+
+th {
+  background: #f9fafb;
+  color: #6b7280;
+  font-size: 13px;
+  text-transform: uppercase;
+}
+
+td {
+  font-size: 14px;
+}
+
+.role {
+  background: #eef2ff;
+  color: #4338ca;
+  padding: 6px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+}
+
+.leave-list {
+  border-top: 1px solid #edf0f4;
+}
+
+.leave-item {
+  padding: 20px 22px;
+  border-bottom: 1px solid #edf0f4;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.leave-item:last-child {
+  border-bottom: none;
+}
+
+.leave-info h3 {
+  font-size: 15px;
+  margin-bottom: 7px;
+}
+
+.leave-info p {
+  color: #4b5563;
+  margin-bottom: 7px;
+}
+
+.leave-info small {
+  color: #9ca3af;
+}
+
+.leave-actions {
+  text-align: right;
+}
+
+.status {
+  display: inline-block;
+  padding: 6px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.status.pending {
+  background: #fff7ed;
+  color: #c2410c;
+}
+
+.status.approved {
+  background: #ecfdf5;
+  color: #15803d;
+}
+
+.status.rejected {
+  background: #fef2f2;
+  color: #dc2626;
+}
+
+.approve {
+  background: #dcfce7;
+  color: #15803d;
+  margin-right: 7px;
+  padding: 7px 11px;
+}
+
+.reject {
+  background: #fee2e2;
+  color: #dc2626;
+  padding: 7px 11px;
+}
+
+.continuity {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.continuity h2 {
+  margin-bottom: 8px;
+}
+
+.continuity p {
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.availability {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.availability small {
+  display: block;
+  color: #6b7280;
+  margin-bottom: 4px;
+}
+
+.availability strong {
+  color: #15803d;
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.modal-box {
+  background: white;
+  width: 100%;
+  max-width: 450px;
+  padding: 28px;
+  border-radius: 14px;
+  position: relative;
+}
+
+.modal-box h2 {
+  margin-bottom: 20px;
+}
+
+.close {
+  position: absolute;
+  top: 15px;
+  right: 18px;
+  background: none;
+  border: none;
+  font-size: 25px;
+  color: #6b7280;
+}
+
+.modal-box form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.modal-box input,
+.modal-box select,
+.modal-box textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 7px;
+  outline: none;
+}
+
+.modal-box textarea {
+  min-height: 90px;
+  resize: vertical;
+}
+
+.modal-box input:focus,
+.modal-box select:focus,
+.modal-box textarea:focus {
+  border-color: #2563eb;
+}
+
+.modal-box label {
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.full {
+  width: 100%;
+  margin-top: 5px;
+}
+
+@media (max-width: 900px) {
+  .stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .hero {
+    align-items: flex-start;
+    gap: 20px;
+    flex-direction: column;
+  }
+
+  .continuity {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  .topbar {
+    padding: 18px;
+  }
+
+  .container {
+    width: 94%;
+  }
+
+  .stats {
+    grid-template-columns: 1fr;
+  }
+
+  .actions {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .actions button {
+    width: 100%;
+  }
+
+  .leave-item {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .leave-actions {
+    text-align: left;
+  }
+}

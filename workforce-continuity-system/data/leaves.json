@@ -1,0 +1,25 @@
+[ {
+  "id" : 1,
+  "employeeId" : 1,
+  "leaveType" : "Sick",
+  "startDate" : "2026-08-10",
+  "endDate" : "2026-08-11",
+  "reason" : "Personal reason",
+  "status" : "PENDING"
+}, {
+  "id" : 2,
+  "employeeId" : 2,
+  "leaveType" : "Casual",
+  "startDate" : "2026-08-05",
+  "endDate" : "2026-08-06",
+  "reason" : "Family function",
+  "status" : "APPROVED"
+}, {
+  "id" : 3,
+  "employeeId" : 3,
+  "leaveType" : "Vacation",
+  "startDate" : "2026-08-15",
+  "endDate" : "2026-08-18",
+  "reason" : "Personal vacation",
+  "status" : "REJECTED"
+} ]

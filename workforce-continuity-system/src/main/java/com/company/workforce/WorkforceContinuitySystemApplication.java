@@ -16,7 +16,8 @@ import java.util.concurrent.atomic.AtomicLong;
 @RequestMapping("/api")
 @CrossOrigin(origins = {
 		"http://localhost:5173",
-		"http://localhost:5174"
+		"http://localhost:5174",
+		"https://remarkable-meerkat-736905.netlify.app"
 })
 public class WorkforceContinuitySystemApplication {
 

@@ -1,7 +1,8 @@
 import React, { useEffect, useMemo, useState } from "react";
 
-const API = "http://localhost:8080/api";
+const API = import.meta.env.VITE_API_URL;
 
+console.log("API URL:", API);
 // =========================================================
 // APP
 // =========================================================
